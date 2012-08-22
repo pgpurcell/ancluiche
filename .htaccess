@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteBase /ancluiche
+RewriteRule !\.(js|ico|txt|gif|jpg|png|css|html|php)$ index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule  ^(foo|bar).*  - [L]
+SetEnv PHP_VER 5

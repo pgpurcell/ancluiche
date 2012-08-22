@@ -1,0 +1,13 @@
+download the source
+unzip - untar
+move it to your server root
+rename the folder
+edit ./www/.htaccess  : RewriteBase /your_folder/www/
+edit ./config/defines.php 
+define('ALIAS', '/your_folder/www');
+define('APP_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/' . ALIAS);
+#put you db credentials here :
+define('DB_DSN', 'mysql:dbname=minimal;host=127.0.0.1');
+define('DB_USER', 'root');
+define('DB_PASS', 'yourpass');
+define('DEFAULT_LANG', 'fr');
