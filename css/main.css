@@ -22,3 +22,23 @@ body{ text-align:center;  font-family: arial,sans-serif; }
     #admin_form table td { border:solid 1px #ccc; }
 
     #admin_form .highlighted { border:solid 1px #c00; color:red; }
+
+/* Edit Form */
+#edit_form li
+{
+	width: 50%;
+}
+#edit_form .left
+{
+	float: left;
+}
+#edit_form .right
+{
+	float: right;
+}
+#edit_form label
+{
+	float: left;
+	width: 30%;
+}
+/* Edit Form */

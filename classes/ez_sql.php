@@ -10,11 +10,16 @@
 	// ==================================================================
 	// User Settings -- CHANGE HERE
 
+	// PP - Don't need to define these here, will define them in a config
+	// file
+	/*
 	define("EZSQL_DB_USER", "");			// <-- mysql db user
 	define("EZSQL_DB_PASSWORD", "");		// <-- mysql db password
 	define("EZSQL_DB_NAME", "mysql");		// <-- mysql db pname
 	define("EZSQL_DB_HOST", "localhost");	// <-- mysql server host
-			
+	*/
+	// PP
+
 	// ==================================================================
 	//	ezSQL Constants
 	define("EZSQL_VERSION","1.01");
@@ -420,6 +425,8 @@
 	
 	}
 
-$db = new db(EZSQL_DB_USER, EZSQL_DB_PASSWORD, EZSQL_DB_NAME, EZSQL_DB_HOST);
+// PP - make the class usable to create outside of this file
+//$db = new db(EZSQL_DB_USER, EZSQL_DB_PASSWORD, EZSQL_DB_NAME, EZSQL_DB_HOST);
+// PP
 
 ?>
