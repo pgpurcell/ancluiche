@@ -1,4 +1,4 @@
-<?
+<?php
 
 	// ==================================================================
 	//  Author: Justin Vincent (justin@visunet.ie)
@@ -18,14 +18,16 @@
 	define("EZSQL_DB_NAME", "mysql");		// <-- mysql db pname
 	define("EZSQL_DB_HOST", "localhost");	// <-- mysql server host
 	*/
-	// PP
 
 	// ==================================================================
 	//	ezSQL Constants
+	/*
 	define("EZSQL_VERSION","1.01");
 	define("OBJECT","OBJECT",true);
 	define("ARRAY_A","ARRAY_A",true);
 	define("ARRAY_N","ARRAY_N",true);
+	*/
+	// PP
 
 	// ==================================================================
 	//	The Main Class
@@ -428,5 +430,3 @@
 // PP - make the class usable to create outside of this file
 //$db = new db(EZSQL_DB_USER, EZSQL_DB_PASSWORD, EZSQL_DB_NAME, EZSQL_DB_HOST);
 // PP
-
-?>

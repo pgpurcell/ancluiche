@@ -17,9 +17,11 @@ class Match_IndexController extends Base
 	function save()
 	{
 		$match = new Match();
-		$match->save();
+		$match->populate($_REQUEST);
+		//$match->save();
 		$this->template('content', 'index.phtml');
 		$this->show('main.tpl');
+		echo "Saved";
 	}
 
 	function exemple()
