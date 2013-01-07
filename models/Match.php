@@ -1,8 +1,9 @@
 <?php
 
-require_once('classes/ez_sql.php');
-class Match{
+require_once('classes/Database/DB.php');
 
+class Match
+{
     var $db;
 	var $id;
 	var $season;
@@ -11,21 +12,56 @@ class Match{
 	var $grade;
 	var $type;
 	var $competition;
+	var $stage;
 	var $team1;
 	var $score1;
 	var $team2;
 	var $score2;
 	var $venue;
 	var $address;
-	var $referee;
-	var $county;
-	var $club;
-	var $table_name;
+	var $referee_firstname;
+	var $referee_lastname;
+	var $referee_county;
+	var $referee_club;
+	var $table_name = 'matches';
+	var $field_defs = array(
+		'id',
+		'season',
+		'datetime',
+		'code',
+		'grade',
+		'type',
+		'competition',
+		'stage',
+		'team1',
+		'score1',
+		'team2',
+		'score2',
+		'venue',
+		'address',
+		'referee_firstname',
+		'referee_lastname',
+		'referee_county',
+		'referee_club',
+	);
 
 	function __construct()
     {
-		$this->db = new db(EZSQL_DB_USER, EZSQL_DB_PASSWORD, EZSQL_DB_NAME, EZSQL_DB_HOST);
+		$this->db = new PP_DB(EZSQL_DB_USER, EZSQL_DB_PASSWORD, EZSQL_DB_NAME, EZSQL_DB_HOST);
     }
+
+	public function populate($data)
+	{
+		// TODO: convert score into score_goals etc.
+		foreach ($this->field_defs as $key => $val)
+		{
+			if (isset($data[$val]))
+			{
+				$this->$val = $data[$val];
+			}
+		}
+		echo ":".print_r($this,1).":";
+	}
 
 	public function retrieve($id)
 	{
@@ -42,7 +78,7 @@ class Match{
 		}
 
 		// TODO: Something like this to ez_sql
-		$row = $this->db->fetchByAssoc($result, $encode);
+		////$row = $this->db->fetchByAssoc($result, $encode);
 		if(empty($row))
 		{
 			return null;
@@ -72,10 +108,28 @@ class Match{
 
 		// TODO: Question: add date_modified to the model?
 		if ($isUpdate) {
-			$this->db->update($this);
+			$this->update();
+			//$this->db->update($this);
 		} else {
-			$this->db->insert($this);
+			$this->insert();
+			//$this->db->insert($this);
 		}
+	}
+
+	public function insert()
+	{
+		$values = array();
+		foreach ($this->field_defs as $key => $val)
+		{
+			if ($val != 'id')
+			{
+				$values[$val] = "'".$this->db->quote($this->$val)."'";
+			}
+		}
+
+		$query = "INSERT INTO ".$this->table_name." (".implode(",", array_keys($values)).")
+					VALUES (".implode(",", $values).")";echo ":".$query.":";
+		$this->db->query($query);
 	}
 
 	// TODO: Make the below function work inside the insert part
@@ -223,7 +277,7 @@ class Match{
 
 	function oldsave(){
 	    $query = "INSERT INTO matches (id,name) VALUES (1,'Amy')";
-		$db->query($query);
+		////$db->query($query);
     }
 
 	function getMatches(){
@@ -231,11 +285,6 @@ class Match{
         return self::makeData();//Db::all("select * from items");
     
     }
-
-	function populate()
-	{
-		//
-	}
 
     function makeData(){
         $names = array('marie', 'cecile', 'cathy', 'nico', 'paul', 'tom', 'charlie', 'sam' );

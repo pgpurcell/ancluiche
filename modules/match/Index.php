@@ -17,8 +17,8 @@ class Match_IndexController extends Base
 	function save()
 	{
 		$match = new Match();
-		$match->populate($_REQUEST);
-		//$match->save();
+		$match->populate($_POST);
+		$match->save();
 		$this->template('content', 'index.phtml');
 		$this->show('main.tpl');
 		echo "Saved";
